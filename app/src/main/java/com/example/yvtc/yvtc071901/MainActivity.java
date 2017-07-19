@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lv;
     String cities[] = {"台北", "台中", "台南", "高雄"};
     String codes[] = {"02", "04", "06", "07"};
-    ArrayList<HashMap<String, String>> mylist;
+    int imgs[] = {R.drawable.tpe, R.drawable.tc, R.drawable.tn, R.drawable.kh};
+    ArrayList<HashMap<String, Object>> mylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +29,16 @@ public class MainActivity extends AppCompatActivity {
         int i;
         for (i=0;i<=3;i++)
         {
-            HashMap<String, String> m1 = new HashMap<>();
+            HashMap<String, Object> m1 = new HashMap<>();
             m1.put("city", cities[i]);
             m1.put("code", codes[i]);
+            m1.put("img", imgs[i]);
             mylist.add(m1);
         }
 
 
         SimpleAdapter adapter = new SimpleAdapter(MainActivity.this, mylist, R.layout.myitem,
-                new String[] {"city", "code"}, new int[] {R.id.textView, R.id.textView2});
+                new String[] {"city", "code", "img"}, new int[] {R.id.textView, R.id.textView2, R.id.imageView});
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
